@@ -9,13 +9,13 @@ document.getElementById('summarizeBtn').addEventListener('click', async () => {
         return;
     }
 
-    // UI Feedback: Disable button and show loading state
+   
     summarizeBtn.disabled = true;
     summarizeBtn.innerText = "Analyzing text...";
     resultBox.style.display = "none";
 
     try {
-        // Hit our Python Flask server running on port 5002
+       
         const response = await fetch("https://content-summarizer-ybyy.onrender.com", { 
  
             method: 'POST',
@@ -26,7 +26,7 @@ document.getElementById('summarizeBtn').addEventListener('click', async () => {
         const data = await response.json();
 
         if (response.ok) {
-            // Display the clean summary text returned by the AI
+           
             summaryDisplay.innerText = data.summary;
             resultBox.style.display = "block";
         } else {
@@ -36,7 +36,7 @@ document.getElementById('summarizeBtn').addEventListener('click', async () => {
         console.error("Fetch Error:", error);
         alert("Could not connect to the backend server. Make sure app.py is running!");
     } finally {
-        // Restore button state
+        
         summarizeBtn.disabled = false;
         summarizeBtn.innerText = "Generate Summary";
     }
