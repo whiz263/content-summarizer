@@ -16,6 +16,10 @@ CORS(app, resources={r"/api/*": {"origins": " https://whiz263.github.io/content-
 
 client = genai.Client()
 
+@app.route('/', methods=['GET'])
+def health_check():
+    return jsonify({"status": "active", "message": "Content Summarizer API is running!"}), 200
+
 @app.route('/api/summarize', methods=['POST'])
 def summarize_text():
     data = request.get_json()
