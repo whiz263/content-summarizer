@@ -9,15 +9,14 @@ document.getElementById('summarizeBtn').addEventListener('click', async () => {
         return;
     }
 
-   
+
     summarizeBtn.disabled = true;
     summarizeBtn.innerText = "Analyzing text...";
     resultBox.style.display = "none";
 
     try {
-       
-        const response = await fetch("https://content-summarizer-ybyy.onrender.com", { 
- 
+        
+        const response = await fetch('https://content-summarizer-ybyy.onrender.com/api/summarize', {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify({ text: textInput })
@@ -26,7 +25,7 @@ document.getElementById('summarizeBtn').addEventListener('click', async () => {
         const data = await response.json();
 
         if (response.ok) {
-           
+            
             summaryDisplay.innerText = data.summary;
             resultBox.style.display = "block";
         } else {
@@ -34,7 +33,7 @@ document.getElementById('summarizeBtn').addEventListener('click', async () => {
         }
     } catch (error) {
         console.error("Fetch Error:", error);
-        alert("Could not connect to the backend server. Make sure app.py is running!");
+        alert("Could not connect to the backend server.");
     } finally {
         
         summarizeBtn.disabled = false;
