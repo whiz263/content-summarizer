@@ -16,7 +16,8 @@ document.getElementById('summarizeBtn').addEventListener('click', async () => {
 
     try {
         // Hit our Python Flask server running on port 5002
-        const response = await fetch('http://127.0.0.1:5002/api/summarize', {
+        const response = await fetch("https://content-summarizer-ybyy.onrender.com", { 
+ 
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify({ text: textInput })
